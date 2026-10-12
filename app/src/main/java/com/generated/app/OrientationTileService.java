@@ -54,33 +54,41 @@ public class OrientationTileService extends TileService {
                 OrientationService.ORIENTATION_PORTRAIT
         );
 
+        int iconResId;
+
         if (isRunning) {
             tile.setState(Tile.STATE_ACTIVE);
             switch (currentOrientation) {
                 case OrientationService.ORIENTATION_LANDSCAPE:
                     tile.setLabel("רוחב (לרוחב)");
+                    iconResId = R.drawable.ic_qs_landscape;
                     break;
                 case OrientationService.ORIENTATION_SENSOR:
                     tile.setLabel("חיישן אוטומטי");
+                    iconResId = R.drawable.ic_qs_sensor;
                     break;
                 case OrientationService.ORIENTATION_REVERSE_LANDSCAPE:
                     tile.setLabel("רוחב הפוך");
+                    iconResId = R.drawable.ic_qs_landscape;
                     break;
                 case OrientationService.ORIENTATION_REVERSE_PORTRAIT:
                     tile.setLabel("אורך הפוך");
+                    iconResId = R.drawable.ic_qs_portrait;
                     break;
                 case OrientationService.ORIENTATION_PORTRAIT:
                 default:
                     tile.setLabel("אורך (לאורך)");
+                    iconResId = R.drawable.ic_qs_portrait;
                     break;
             }
         } else {
             tile.setState(Tile.STATE_INACTIVE);
             tile.setLabel("כיוון מסך: כבוי");
+            iconResId = R.drawable.ic_qs_tile;
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_launcher));
+            tile.setIcon(Icon.createWithResource(this, iconResId));
         }
 
         tile.updateTile();
