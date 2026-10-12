@@ -1,0 +1,256 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Header Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/app_name"
+                android:textColor="#0D1B2A"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/app_tagline"
+                android:textColor="#596A7C"
+                android:textSize="14sp" />
+
+            <!-- Service Status Indicator -->
+            <LinearLayout
+                android:id="@+id/status_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_status_inactive"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <TextView
+                    android:id="@+id/tv_status_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚪"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_status_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/status_inactive"
+                    android:textColor="#334155"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Toggle Main Service Button -->
+            <Button
+                android:id="@+id/btn_toggle_service"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_primary"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/enable_service"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Permission Box (hidden if granted) -->
+        <LinearLayout
+            android:id="@+id/box_permission_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/permission_required_title"
+                android:textColor="#C2410C"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/permission_required_desc"
+                android:textColor="#475569"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_grant_permission"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_primary"
+                android:text="@string/grant_permission"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Orientation Selector Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="בחר כיוון מסך רצוי:"
+                android:textColor="#0D1B2A"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- Row 1: Portrait & Landscape -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_mode_portrait"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_mode_unselected"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="📱 לאורך"
+                    android:textColor="#0D1B2A"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btn_mode_landscape"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_mode_unselected"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="🖥️ לרוחב"
+                    android:textColor="#0D1B2A"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Row 2: Reverse Portrait & Reverse Landscape -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_mode_reverse_portrait"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_mode_unselected"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="🙃 לאורך הפוך"
+                    android:textColor="#0D1B2A"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_mode_reverse_landscape"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_mode_unselected"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="🔄 לרוחב הפוך"
+                    android:textColor="#0D1B2A"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Row 3: Sensor Auto -->
+            <Button
+                android:id="@+id/btn_mode_sensor"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_mode_unselected"
+                android:fontFamily="sans-serif-medium"
+                android:text="🧭 אוטומטי (לפי חיישן)"
+                android:textColor="#0D1B2A"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Quick Settings Tile Notice -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_info_banner"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/quick_settings_info_title"
+                android:textColor="#0369A1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/quick_settings_info_desc"
+                android:textColor="#075985"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Bottom device hint -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="מותאם ומיועד עבור מכשיר M5s ודגמי אנדרואיד נוספים"
+            android:textColor="#94A3B8"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>

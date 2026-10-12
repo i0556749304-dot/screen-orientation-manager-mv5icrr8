@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">שליטת כיוון מסך</string>
+    <string name="tile_label">כיוון מסך</string>
+    <string name="app_tagline">שליטה מלאה ומהירה בכיוון המסך במכשיר ה-M5s</string>
+    <string name="status_active">שירות כיוון מסך פעיל כעת</string>
+    <string name="status_inactive">השירות כבוי - לחץ להפעלה</string>
+    <string name="enable_service">הפעל שירות שליטה</string>
+    <string name="disable_service">עצור שירות שליטה</string>
+    <string name="mode_portrait">לאורך (Portrait)</string>
+    <string name="mode_landscape">לרוחב (Landscape)</string>
+    <string name="mode_reverse_portrait">לאורך הפוך</string>
+    <string name="mode_reverse_landscape">לרוחב הפוך</string>
+    <string name="mode_sensor">חיישן אוטומטי</string>
+    <string name="permission_required_title">נדרשת הרשאת חלון צף</string>
+    <string name="permission_required_desc">כדי לנעול ולשנות את כיוון המסך מעל כל האפליקציות, יש לאשר את הרשאת \'הצג מעל אפליקציות אחרות\'.</string>
+    <string name="grant_permission">הענק הרשאה</string>
+    <string name="quick_settings_info_title">הגדרה מהירה (Quick Settings)</string>
+    <string name="quick_settings_info_desc">נוסף כפתור שליטה מהיר לפאנל ההגדרות העליון של המכשיר. גרור את וילון ההתראות כלפי מטה וערוך את כפתורי הקיצור כדי להוסיף את \'כיוון מסך\'.</string>
+    <string name="notification_title">שליטת כיוון מסך פעילה</string>
+    <string name="notification_btn_portrait">לאורך</string>
+    <string name="notification_btn_landscape">לרוחב</string>
+    <string name="notification_btn_sensor">אוטומטי</string>
+    <string name="notification_btn_close">סגור</string>
+</resources>

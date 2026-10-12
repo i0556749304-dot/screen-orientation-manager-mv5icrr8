@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Background Rounded Card -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M16,0 L80,0 A16,16 0 0,1 96,16 L96,80 A16,16 0 0,1 80,96 L16,96 A16,16 0 0,1 0,80 L0,16 A16,16 0 0,1 16,0 Z" />
+
+    <!-- Outer Rotation Arrows Circle -->
+    <path
+        android:fillColor="#1B3A4B"
+        android:pathData="M48,16 C65.67,16 80,30.33 80,48 C80,65.67 65.67,80 48,80 C30.33,80 16,65.67 16,48 C16,30.33 30.33,16 48,16 Z" />
+
+    <!-- Center Phone Device in Portrait -->
+    <path
+        android:fillColor="#E0E1DD"
+        android:pathData="M37,28 L59,28 A4,4 0 0,1 63,32 L63,64 A4,4 0 0,1 59,68 L37,68 A4,4 0 0,1 33,64 L33,32 A4,4 0 0,1 37,28 Z" />
+
+    <!-- Phone Inner Screen -->
+    <path
+        android:fillColor="#00A896"
+        android:pathData="M37,33 L59,33 L59,61 L37,61 Z" />
+
+    <!-- Rotation Indicator Arrows in Accent Coral -->
+    <path
+        android:fillColor="#F4A261"
+        android:pathData="M66,22 L76,22 L71,15 Z" />
+    <path
+        android:fillColor="#F4A261"
+        android:pathData="M30,74 L20,74 L25,81 Z" />
+</vector>
