@@ -1,6 +1,7 @@
 package com.generated.app;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.service.quicksettings.TileService;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,9 +33,14 @@ public class MainActivity extends Activity {
     private Button btnReverseLandscape;
     private Button btnSensor;
 
+    private Button btnTilePortLand;
+    private Button btnTileAll;
+    private TextView tvTileModeSummary;
+
     private SharedPreferences prefs;
     private boolean isServiceRunning;
     private int selectedOrientation;
+    private int selectedTileMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,10 @@ public class MainActivity extends Activity {
         btnReversePortrait = (Button) findViewById(R.id.btn_mode_reverse_portrait);
         btnReverseLandscape = (Button) findViewById(R.id.btn_mode_reverse_landscape);
         btnSensor = (Button) findViewById(R.id.btn_mode_sensor);
+
+        btnTilePortLand = (Button) findViewById(R.id.btn_tile_port_land);
+        btnTileAll = (Button) findViewById(R.id.btn_tile_all);
+        tvTileModeSummary = (TextView) findViewById(R.id.tv_tile_mode_summary);
     }
 
     private void setupListeners() {
@@ -112,7 +123,6 @@ public class MainActivity extends Activity {
                     selectedOrientation = OrientationService.ORIENTATION_SENSOR;
                 }
 
-                // If service is running, immediately apply orientation
                 if (isServiceRunning) {
                     if (hasOverlayPermission()) {
                         OrientationService.startServiceWithOrientation(MainActivity.this, selectedOrientation);
@@ -120,7 +130,6 @@ public class MainActivity extends Activity {
                         requestOverlayPermission();
                     }
                 } else {
-                    // Save chosen orientation for next launch
                     prefs.edit().putInt(OrientationService.KEY_CURRENT_ORIENTATION, selectedOrientation).apply();
                 }
 
@@ -133,6 +142,28 @@ public class MainActivity extends Activity {
         btnReversePortrait.setOnClickListener(modeClickListener);
         btnReverseLandscape.setOnClickListener(modeClickListener);
         btnSensor.setOnClickListener(modeClickListener);
+
+        btnTilePortLand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedTileMode = OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE;
+                prefs.edit().putInt(OrientationService.KEY_TILE_MODE, selectedTileMode).apply();
+                notifyTileUpdate();
+                Toast.makeText(MainActivity.this, getString(R.string.tile_mode_changed_toast), Toast.LENGTH_SHORT).show();
+                updateUI();
+            }
+        });
+
+        btnTileAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedTileMode = OrientationService.TILE_MODE_ALL;
+                prefs.edit().putInt(OrientationService.KEY_TILE_MODE, selectedTileMode).apply();
+                notifyTileUpdate();
+                Toast.makeText(MainActivity.this, getString(R.string.tile_mode_changed_toast), Toast.LENGTH_SHORT).show();
+                updateUI();
+            }
+        });
     }
 
     private void loadState() {
@@ -140,6 +171,10 @@ public class MainActivity extends Activity {
         selectedOrientation = prefs.getInt(
                 OrientationService.KEY_CURRENT_ORIENTATION,
                 OrientationService.ORIENTATION_PORTRAIT
+        );
+        selectedTileMode = prefs.getInt(
+                OrientationService.KEY_TILE_MODE,
+                OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE
         );
     }
 
@@ -169,8 +204,19 @@ public class MainActivity extends Activity {
         }
     }
 
+    private void notifyTileUpdate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            try {
+                TileService.requestListeningState(
+                        this,
+                        new ComponentName(this, OrientationTileService.class)
+                );
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
     private void updateUI() {
-        // Update service status and toggle button
         if (isServiceRunning) {
             statusBox.setBackgroundResource(R.drawable.bg_status_active);
             tvStatusIcon.setText("🟢");
@@ -185,12 +231,22 @@ public class MainActivity extends Activity {
             btnToggleService.setBackgroundResource(R.drawable.btn_primary);
         }
 
-        // Highlight active mode button
         highlightButton(btnPortrait, selectedOrientation == OrientationService.ORIENTATION_PORTRAIT);
         highlightButton(btnLandscape, selectedOrientation == OrientationService.ORIENTATION_LANDSCAPE);
         highlightButton(btnReversePortrait, selectedOrientation == OrientationService.ORIENTATION_REVERSE_PORTRAIT);
         highlightButton(btnReverseLandscape, selectedOrientation == OrientationService.ORIENTATION_REVERSE_LANDSCAPE);
         highlightButton(btnSensor, selectedOrientation == OrientationService.ORIENTATION_SENSOR);
+
+        // Highlight Quick Settings tile mode selection
+        boolean isPortLandMode = (selectedTileMode == OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE);
+        highlightButton(btnTilePortLand, isPortLandMode);
+        highlightButton(btnTileAll, !isPortLandMode);
+
+        if (isPortLandMode) {
+            tvTileModeSummary.setText(getString(R.string.tile_mode_port_land_desc));
+        } else {
+            tvTileModeSummary.setText(getString(R.string.tile_mode_all_desc));
+        }
     }
 
     private void highlightButton(Button btn, boolean isSelected) {

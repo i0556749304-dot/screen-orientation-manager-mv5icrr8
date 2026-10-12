@@ -21,4 +21,11 @@
     <string name="notification_btn_landscape">לרוחב</string>
     <string name="notification_btn_sensor">אוטומטי</string>
     <string name="notification_btn_close">סגור</string>
+    <string name="tile_setting_title">הגדרת כפתור הקיצור המהיר (Tile)</string>
+    <string name="tile_setting_subtitle">בחר איזה מצבים יוחלפו בלחיצה על הכפתור בווילון ההגדרות:</string>
+    <string name="tile_mode_port_land">📱 אורך ורוחב בלבד</string>
+    <string name="tile_mode_port_land_desc">מעבר פשוט: לאורך ➔ לרוחב ➔ כיבוי</string>
+    <string name="tile_mode_all">🔄 כל המצבים</string>
+    <string name="tile_mode_all_desc">מעבר מלא: לאורך ➔ לרוחב ➔ אורך הפוך ➔ לרוחב הפוך ➔ חיישן ➔ כיבוי</string>
+    <string name="tile_mode_changed_toast">הגדרת כפתור הקיצור עודכנה בהצלחה</string>
 </resources>

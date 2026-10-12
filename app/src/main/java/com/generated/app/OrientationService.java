@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.service.quicksettings.TileService;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +24,10 @@ public class OrientationService extends Service {
     public static final String PREFS_NAME = "OrientationPrefs";
     public static final String KEY_IS_RUNNING = "is_running";
     public static final String KEY_CURRENT_ORIENTATION = "current_orientation";
+    public static final String KEY_TILE_MODE = "tile_cycle_mode";
+
+    public static final int TILE_MODE_PORTRAIT_LANDSCAPE = 0;
+    public static final int TILE_MODE_ALL = 1;
 
     public static final int ORIENTATION_PORTRAIT = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     public static final int ORIENTATION_LANDSCAPE = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
@@ -70,6 +76,7 @@ public class OrientationService extends Service {
         if (intent != null && ACTION_STOP.equals(intent.getAction())) {
             removeOverlay();
             setRunningPref(false);
+            notifyTileUpdate();
             stopForeground(true);
             stopSelf();
             return START_NOT_STICKY;
@@ -84,6 +91,7 @@ public class OrientationService extends Service {
 
         saveOrientationPref(currentOrientation);
         setRunningPref(true);
+        notifyTileUpdate();
 
         Notification notification = buildNotification(currentOrientation);
         startForeground(NOTIFICATION_ID, notification);
@@ -240,10 +248,23 @@ public class OrientationService extends Service {
                 .apply();
     }
 
+    private void notifyTileUpdate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            try {
+                TileService.requestListeningState(
+                        this,
+                        new ComponentName(this, OrientationTileService.class)
+                );
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
     @Override
     public void onDestroy() {
         removeOverlay();
         setRunningPref(false);
+        notifyTileUpdate();
         super.onDestroy();
     }
 

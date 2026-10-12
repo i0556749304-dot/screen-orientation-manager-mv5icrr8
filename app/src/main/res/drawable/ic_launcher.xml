@@ -3,31 +3,43 @@
     android:height="96dp"
     android:viewportWidth="96"
     android:viewportHeight="96">
-    <!-- Background Rounded Card -->
+    <!-- Rounded squircle background -->
     <path
         android:fillColor="#0D1B2A"
-        android:pathData="M16,0 L80,0 A16,16 0 0,1 96,16 L96,80 A16,16 0 0,1 80,96 L16,96 A16,16 0 0,1 0,80 L0,16 A16,16 0 0,1 16,0 Z" />
+        android:pathData="M24,4 L72,4 C84,4 92,12 92,24 L92,72 C92,84 84,92 72,92 L24,92 C12,92 4,84 4,72 L4,24 C4,12 12,4 24,4 Z" />
 
-    <!-- Outer Rotation Arrows Circle -->
+    <!-- Subtle circular badge -->
     <path
-        android:fillColor="#1B3A4B"
+        android:fillColor="#1B2A3D"
         android:pathData="M48,16 C65.67,16 80,30.33 80,48 C80,65.67 65.67,80 48,80 C30.33,80 16,65.67 16,48 C16,30.33 30.33,16 48,16 Z" />
 
-    <!-- Center Phone Device in Portrait -->
-    <path
-        android:fillColor="#E0E1DD"
-        android:pathData="M37,28 L59,28 A4,4 0 0,1 63,32 L63,64 A4,4 0 0,1 59,68 L37,68 A4,4 0 0,1 33,64 L33,32 A4,4 0 0,1 37,28 Z" />
-
-    <!-- Phone Inner Screen -->
+    <!-- Top-right rotation arrow -->
     <path
         android:fillColor="#00A896"
-        android:pathData="M37,33 L59,33 L59,61 L37,61 Z" />
+        android:pathData="M48,21 C58,21 67,26 73,34 L78,29 L77,42 L64,41 L69,36 C64,29 56,25 48,25 Z" />
 
-    <!-- Rotation Indicator Arrows in Accent Coral -->
+    <!-- Bottom-left rotation arrow -->
+    <path
+        android:fillColor="#00A896"
+        android:pathData="M48,75 C38,75 29,70 23,62 L18,67 L19,54 L32,55 L27,60 C32,67 40,71 48,71 Z" />
+
+    <!-- Smartphone outer frame -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M37,28 L59,28 C61.2,28 63,29.8 63,32 L63,64 C63,66.2 61.2,68 59,68 L37,68 C34.8,68 33,66.2 33,64 L33,32 C33,29.8 34.8,28 37,28 Z" />
+
+    <!-- Phone inner screen -->
+    <path
+        android:fillColor="#00A896"
+        android:pathData="M36,33 L60,33 L60,61 L36,61 Z" />
+
+    <!-- Device home bar indicator -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M44,64 L52,64 C52.5,64 53,64.5 53,65 C53,65.5 52.5,66 52,66 L44,66 C43.5,66 43,65.5 43,65 C43,64.5 43.5,64 44,64 Z" />
+
+    <!-- Screen sensor accent dot -->
     <path
         android:fillColor="#F4A261"
-        android:pathData="M66,22 L76,22 L71,15 Z" />
-    <path
-        android:fillColor="#F4A261"
-        android:pathData="M30,74 L20,74 L25,81 Z" />
+        android:pathData="M48,30 C48.8,30 49.5,30.7 49.5,31.5 C49.5,32.3 48.8,33 48,33 C47.2,33 46.5,32.3 46.5,31.5 C46.5,30.7 47.2,30 48,30 Z" />
 </vector>
