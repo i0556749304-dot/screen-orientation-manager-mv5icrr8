@@ -30,13 +30,10 @@ public class OrientationTileService extends TileService {
         );
 
         if (tileMode == OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE) {
-            // Mode: Portrait & Landscape only
-            if (!isRunning) {
-                OrientationService.startServiceWithOrientation(this, OrientationService.ORIENTATION_PORTRAIT);
-            } else if (currentOrientation == OrientationService.ORIENTATION_PORTRAIT) {
+            // Mode: כבוי ורוחב בלבד (Landscape & Off only)
+            if (!isRunning || currentOrientation != OrientationService.ORIENTATION_LANDSCAPE) {
                 OrientationService.startServiceWithOrientation(this, OrientationService.ORIENTATION_LANDSCAPE);
             } else {
-                // If in Landscape (or any other mode), turn off
                 OrientationService.stopService(this);
             }
         } else {
@@ -105,8 +102,13 @@ public class OrientationTileService extends TileService {
             }
         } else {
             tile.setState(Tile.STATE_INACTIVE);
-            tile.setLabel("כיוון מסך: כבוי");
-            iconResId = R.drawable.ic_qs_tile;
+            if (tileMode == OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE) {
+                tile.setLabel("לרוחב (כבוי)");
+                iconResId = R.drawable.ic_qs_landscape;
+            } else {
+                tile.setLabel("כיוון מסך: כבוי");
+                iconResId = R.drawable.ic_qs_tile;
+            }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -115,7 +117,7 @@ public class OrientationTileService extends TileService {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             String subtitle = (tileMode == OrientationService.TILE_MODE_PORTRAIT_LANDSCAPE)
-                    ? "אורך/רוחב"
+                    ? "רוחב / כבוי"
                     : "כל המצבים";
             tile.setSubtitle(subtitle);
         }

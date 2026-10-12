@@ -3,43 +3,43 @@
     android:height="96dp"
     android:viewportWidth="96"
     android:viewportHeight="96">
-    <!-- Rounded squircle background -->
+    <!-- Rounded squircle container -->
     <path
         android:fillColor="#0D1B2A"
         android:pathData="M24,4 L72,4 C84,4 92,12 92,24 L92,72 C92,84 84,92 72,92 L24,92 C12,92 4,84 4,72 L4,24 C4,12 12,4 24,4 Z" />
 
-    <!-- Subtle circular badge -->
+    <!-- Subtle inner backdrop -->
     <path
         android:fillColor="#1B2A3D"
         android:pathData="M48,16 C65.67,16 80,30.33 80,48 C80,65.67 65.67,80 48,80 C30.33,80 16,65.67 16,48 C16,30.33 30.33,16 48,16 Z" />
 
-    <!-- Top-right rotation arrow -->
+    <!-- Top clockwise rotation curved arrow -->
     <path
         android:fillColor="#00A896"
-        android:pathData="M48,21 C58,21 67,26 73,34 L78,29 L77,42 L64,41 L69,36 C64,29 56,25 48,25 Z" />
+        android:pathData="M48,20 C58.5,20 67.8,25.2 73.5,33.2 L78,28.5 L77.5,42.5 L63.5,41.5 L69,36 C64.5,29.8 56.8,26 48,26 Z" />
 
-    <!-- Bottom-left rotation arrow -->
+    <!-- Bottom counter-clockwise rotation curved arrow -->
     <path
         android:fillColor="#00A896"
-        android:pathData="M48,75 C38,75 29,70 23,62 L18,67 L19,54 L32,55 L27,60 C32,67 40,71 48,71 Z" />
+        android:pathData="M48,76 C37.5,76 28.2,70.8 22.5,62.8 L18,67.5 L18.5,53.5 L32.5,54.5 L27,60 C31.5,66.2 39.2,70 48,70 Z" />
 
-    <!-- Smartphone outer frame -->
+    <!-- Smartphone bezel/frame -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M37,28 L59,28 C61.2,28 63,29.8 63,32 L63,64 C63,66.2 61.2,68 59,68 L37,68 C34.8,68 33,66.2 33,64 L33,32 C33,29.8 34.8,28 37,28 Z" />
+        android:pathData="M36,28 L60,28 C62.5,28 64,29.5 64,32 L64,64 C64,66.5 62.5,68 60,68 L36,68 C33.5,68 32,66.5 32,64 L32,32 C32,29.5 33.5,28 36,28 Z" />
 
-    <!-- Phone inner screen -->
+    <!-- Phone active screen -->
     <path
         android:fillColor="#00A896"
-        android:pathData="M36,33 L60,33 L60,61 L36,61 Z" />
+        android:pathData="M35,33 L61,33 L61,61 L35,61 Z" />
 
-    <!-- Device home bar indicator -->
+    <!-- Home navigation indicator pill -->
     <path
         android:fillColor="#0D1B2A"
-        android:pathData="M44,64 L52,64 C52.5,64 53,64.5 53,65 C53,65.5 52.5,66 52,66 L44,66 C43.5,66 43,65.5 43,65 C43,64.5 43.5,64 44,64 Z" />
+        android:pathData="M44,64.5 L52,64.5 C52.5,64.5 53,65 53,65.5 C53,66 52.5,66.5 52,66.5 L44,66.5 C43.5,66.5 43,66 43,65.5 C43,65 43.5,64.5 44,64.5 Z" />
 
-    <!-- Screen sensor accent dot -->
+    <!-- Top sensor status dot -->
     <path
         android:fillColor="#F4A261"
-        android:pathData="M48,30 C48.8,30 49.5,30.7 49.5,31.5 C49.5,32.3 48.8,33 48,33 C47.2,33 46.5,32.3 46.5,31.5 C46.5,30.7 47.2,30 48,30 Z" />
+        android:pathData="M48,29.5 C48.8,29.5 49.5,30.2 49.5,31 C49.5,31.8 48.8,32.5 48,32.5 C47.2,32.5 46.5,31.8 46.5,31 C46.5,30.2 47.2,29.5 48,29.5 Z" />
 </vector>
